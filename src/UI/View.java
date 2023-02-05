@@ -28,7 +28,7 @@ public class View extends javax.swing.JPanel {
         initComponents();
 
         this.application = application;
-        this.viewtableModel = (DefaultTableModel) observationTable.getModel();
+        this.viewtableModel = (DefaultTableModel) obsTable.getModel();
 
         // display the vital sign observations
         displayObservations();
@@ -53,14 +53,14 @@ public class View extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        observationTable = new javax.swing.JTable();
+        obsTable = new javax.swing.JTable();
         viewObservationBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("VIEW AND UPDATE A VITAL SIGN");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 190, 40));
+        jLabel1.setText("VIEW AND UPDATE ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 120, 40));
 
         fieldObservationID.setEnabled(false);
         add(fieldObservationID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 120, 30));
@@ -76,7 +76,7 @@ public class View extends javax.swing.JPanel {
         jLabel4.setText("Temperature");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        updateBtn.setText("UPDATE OBSERVATION");
+        updateBtn.setText("update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
@@ -84,7 +84,7 @@ public class View extends javax.swing.JPanel {
         });
         add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, -1));
 
-        observationTable.setModel(new javax.swing.table.DefaultTableModel(
+        obsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -100,11 +100,11 @@ public class View extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(observationTable);
+        jScrollPane1.setViewportView(obsTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 340));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, 340));
 
-        viewObservationBtn.setText("VIEW DETAILS");
+        viewObservationBtn.setText("view");
         viewObservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewObservationBtnActionPerformed(evt);
@@ -140,12 +140,12 @@ public class View extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         // what was clicked? Get the row in the table that was clicked
-        int selectedRow = observationTable.getSelectedRow();
+        int selectedRow = obsTable.getSelectedRow();
 
         if (selectedRow >= 0) {
 
             // we can directly fetch the Observation object from the Zeroth position
-            this.selectedObservation = (Observation) observationTable.getValueAt(selectedRow, 0);
+            this.selectedObservation = (Observation) obsTable.getValueAt(selectedRow, 0);
 
             // fill all the text fields
             fieldObservationID.setText(String.valueOf(this.selectedObservation.getObservationId()));
@@ -164,12 +164,9 @@ public class View extends javax.swing.JPanel {
         VitalSignHistory history = this.application.getHistory();
 
         if (history.getVitalSignHistory().size() > 0) {
-            // display
 
             viewtableModel.setRowCount(0);
             for (Observation o : history.getVitalSignHistory()) {
-                // number of columns in the table = 3 and row should be framed
-
                 Object row[] = new Object[3];
                 row[0] = o;
                 row[1] = o.getTemperature();
@@ -194,7 +191,7 @@ public class View extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable observationTable;
+    private javax.swing.JTable obsTable;
     private javax.swing.JButton updateBtn;
     private javax.swing.JButton viewObservationBtn;
     // End of variables declaration//GEN-END:variables

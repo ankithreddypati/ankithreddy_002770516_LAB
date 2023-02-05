@@ -180,7 +180,7 @@ public class Catalog extends javax.swing.JPanel {
             
             for(Medicine med: medicines) {
                 
-                // row[] object for the table
+              
                 
                 Object row[] = new Object[2];
                 row[0] = med;
